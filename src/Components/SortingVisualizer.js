@@ -9,35 +9,29 @@ const BARS_SZ = [80, 80];
 
 function SortingVisualizer() {
     const ANIMATION_SPEEDS = new Map([
-        ["Slow", 150],
+        ["Slow", 1000],
         ["Medium", 80],
         ["Fast", 20]
     ]);
 
-    const [speed, setSpeed] = useState(ANIMATION_SPEEDS.get("Fast") || 20);
+    const [speed, setSpeed] = useState(ANIMATION_SPEEDS.get("Slow") || 20);
     const [array, setArray] = useState([]);
     const [barCount, setBarCount] = useState(20);
 
     const startInsertionSort = () => {
-        const [animations, sortedArr] = insertionSort(array);
-        const newArr = [...array];
-        console.log(animations);
-        console.log(sortedArr);
-        /*for (let i = 0; i < animations.length; i++) {
+        const iS = insertionSort(array);
+        for (let value of iS)
+            console.log(value);
+        /*let i = 0;
+        while (!iS.next().done) {
             setTimeout(() => {
-                const animation = animations[i];
-                let tmp = [...newArr];
-                if (animation.swap === "j") {
-                    tmp[animation.iVal+1] = tmp[animation.iVal];
-                } else if (animation.swap === "k") {
-                    tmp[animation.iVal+1] = tmp[animation.iKey]
-                } else {
-                    tmp[animation.iVal+1] = tmp[animation.iVal+1];
-                }
-                setArray(tmp);
-            }, speed * i);
-        }*/
-        setArray(sortedArr);
+                for (let value of iS)
+                    console.log(value);
+                setArray(array);
+            }, 100 * i);
+            i++;
+        }
+        //setArray(array);*/
     }
 
     const startQuickSort = () => {
