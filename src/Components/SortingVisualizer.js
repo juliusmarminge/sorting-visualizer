@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Bar from './Bar';
-import {insertionSort} from '../algorithms';
+import {insertionSort, mergeSort} from '../algorithms';
 import '../styles/SortingVisualizer.css'
 
 const RANGE = 100;
@@ -44,8 +44,24 @@ class SortingVisualizer extends React.Component {
     }
 
     startInsertionSort = () => {
+        let values = Array.from(this.state.array, (bar) => bar.value);
+        const animations = insertionSort(values)[1];
+        this.startAnimation(animations);
+    }
+
+    startQuickSort = () => {
+        let values = Array.from(this.state.array, (bar) => bar.value);
+        const animations = mergeSort(values)[1];
+        this.startAnimation(animations);
+    }
+
+    startHeapSort = () => {
+
+    }
+
+    startAnimation(animations) {
         let tmpArray = [...this.state.array];
-        const animations = insertionSort(this.state.array);
+
         for (let i = 0; i < animations.length; i++) {
             let animation = animations[i];
             setTimeout(() => {
@@ -70,10 +86,6 @@ class SortingVisualizer extends React.Component {
                 this.setState({array: tmpArray});
             }, this.state.speed * i);
         }
-    }
-
-    startQuickSort = () => {
-        return 0;
     }
 
     generateArray = () => {
@@ -114,6 +126,7 @@ class SortingVisualizer extends React.Component {
     ALGORITHMS = new Map([
         ["InsertionSort", this.startInsertionSort],
         ["Quick Sort", this.startQuickSort],
+        ["Heap Sort", this.startHeapSort],
     ]);
 
     render() {
