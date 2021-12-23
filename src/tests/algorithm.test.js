@@ -1,12 +1,17 @@
-import {insertionSort, mergeSort, heapSort} from "../algorithms.js";
+import {insertionSort,
+        selectionSort,
+        quickSort,
+        heapSort}
+    from "../algorithms.js";
 
 const ITERATIONS = 1000;
 const MAX_SIZE = 1000;
 const MAX_VAL = 10000;
 const ALGORITHMS = {
     "InsertionSort": insertionSort,
-    "MergeSort": mergeSort,
-    "HeapSort": heapSort,
+    "SelectionSort": selectionSort,
+    //"QuickSort": quickSort,
+    //"HeapSort": heapSort,
 };
 
 describe("All algorithms can sort empty arrays", () => {

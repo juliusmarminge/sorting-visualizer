@@ -5,29 +5,37 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faRedoAlt, faPlayCircle} from '@fortawesome/free-solid-svg-icons'
 
 export default function Navbar(props) {
-    const ALGORITHMS = props.algorithms;
-    const ANIMATION_SPEEDS = props.animationSpeeds;
-    const [selectedAlgorithm, setSelectedAlgorithm] = useState({});
+    const [selectedAlgorithm, setSelectedAlgorithm] = useState({name: "", callback:()=>{}});
     const [active, setActive] = useState("");
-    const minBars = props.barCountRange[0];
-    const maxBars = props.barCountRange[1];
-    const barCount = props.defaultBarCount;
+    const {
+        algorithms,
+        animationSpeeds,
+        isAnimating,
+        setSpeed,
+        generateArray,
+        setAmountOfBars,
+        barCountRange,
+        defaultBarCount,
+        defaultAnimationSpeed,
+        logArray,
+    } = props;
+    const defaultAnimationSpeedIndex = animationSpeeds.indexOf(defaultAnimationSpeed);
 
-
-    const selectAlgorithm = (key) => {
-        const callback = ALGORITHMS.get(key);
-        setSelectedAlgorithm({key, callback});
+    const selectAlgorithm = (index) => {
+        const name = Array.from(Object.keys(algorithms))[index];
+        const callback = algorithms[name];
+        setSelectedAlgorithm({name, callback});
     }
 
-    const setSpeed = (event) => {
+    const updateSpeed = (event) => {
         const idx = event.target.value;
-        const timeoutMs = props.animationSpeeds[idx];
-        console.log(`Nav: New Speed: ${timeoutMs}`);
-        props.setSpeed(timeoutMs);
+        const timeoutMs = animationSpeeds[idx];
+        setSpeed(timeoutMs);
     }
 
-    const setAmountOfBars = (event) => {
-        props.setAmountOfBars(event.target.value);
+    const updateAmountOfBars = (event) => {
+        const newBarCount = event.target.value;
+        setAmountOfBars(newBarCount);
     }
 
     const toggleActive = () => {
@@ -39,10 +47,10 @@ export default function Navbar(props) {
         <nav>
             <div className={`wrapper-dropdown ${active}`}
                  onClick={() => toggleActive()}>
-                <p>{selectedAlgorithm.key || "Select Algorithm"}</p>
+                <p>{selectedAlgorithm.name || "Select Algorithm"}</p>
                 <ul className="dropdown">
-                    {Array.from(ALGORITHMS.keys()).map(key => {
-                        return (<li key={key} onClick={() => selectAlgorithm(key)}>
+                    {Array.from(Object.keys(algorithms)).map((key, idx) => {
+                        return (<li key={idx} onClick={() => selectAlgorithm(idx)}>
                             <p>{key}</p>
                         </li>);
                     })}
@@ -51,20 +59,20 @@ export default function Navbar(props) {
             <div className="wrapper-slider">
                 <label htmlFor="speedSlider" className="slider-label">Animation Speed</label>
                 <input name="speedSlider" className="slider slider-speed" type="range" step={1}
-                       min={0} max={ANIMATION_SPEEDS.length-1} defaultValue={props.defaultAnimationSpeed} onChange={setSpeed}/>
+                       min={0} max={animationSpeeds.length-1} defaultValue={defaultAnimationSpeedIndex} onChange={updateSpeed}/>
             </div>
             <div className="wrapper-slider">
                 <label htmlFor="barSlider" className="slider-label">Bar Count</label>
                 <input name="barSlider" className="slider slider-bars" type="range" step={2}
-                       min={minBars} max={maxBars} defaultValue={barCount} onChange={setAmountOfBars}/>
+                       min={barCountRange[0]} max={barCountRange[1]} defaultValue={defaultBarCount} onChange={updateAmountOfBars}/>
             </div>
-            <button className={`btn`} onClick={props.generateArray}>
+            <button className={`btn ${isAnimating ? "disabled" : ""}`} onClick={generateArray} disabled={isAnimating}>
                 <FontAwesomeIcon className="fa-icon" icon={faRedoAlt}/>New Bars!
             </button>
-            <button className={`btn`} onClick={selectedAlgorithm.callback}>
+            <button className={`btn ${isAnimating ? "disabled" : ""}`} onClick={selectedAlgorithm.callback} disabled={isAnimating}>
                 <FontAwesomeIcon className="fa-icon" icon={faPlayCircle}/>Visualize!
             </button>
-            <button className={`btn`} onClick={props.logArray}>
+            <button className={`btn ${isAnimating ? "disabled" : ""}`} onClick={logArray} disabled={isAnimating}>
                 Log Array
             </button>
         </nav>
