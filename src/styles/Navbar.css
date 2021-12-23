@@ -41,6 +41,7 @@ nav > button:hover {
 
 nav > button.disabled {
     background: hsl(219, 20%, 90%);
+    cursor: default;
 }
 nav > button.disabled:hover {
     color: hsl(219, 36%, 40%);

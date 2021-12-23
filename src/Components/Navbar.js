@@ -9,6 +9,7 @@ export default function Navbar(props) {
     const [active, setActive] = useState("");
     const {
         algorithms,
+        startVisualization,
         animationSpeeds,
         isAnimating,
         setSpeed,
@@ -25,6 +26,11 @@ export default function Navbar(props) {
         const name = Array.from(Object.keys(algorithms))[index];
         const callback = algorithms[name];
         setSelectedAlgorithm({name, callback});
+    }
+
+    const visualize = () => {
+        const callback = selectedAlgorithm.callback;
+        startVisualization(callback);
     }
 
     const updateSpeed = (event) => {
@@ -67,9 +73,9 @@ export default function Navbar(props) {
                        min={barCountRange[0]} max={barCountRange[1]} defaultValue={defaultBarCount} onChange={updateAmountOfBars}/>
             </div>
             <button className={`btn ${isAnimating ? "disabled" : ""}`} onClick={generateArray} disabled={isAnimating}>
-                <FontAwesomeIcon className="fa-icon" icon={faRedoAlt}/>New Bars!
+                <FontAwesomeIcon className="fa-icon" icon={faRedoAlt}/>New Bars
             </button>
-            <button className={`btn ${isAnimating ? "disabled" : ""}`} onClick={selectedAlgorithm.callback} disabled={isAnimating}>
+            <button className={`btn ${isAnimating || !selectedAlgorithm.name ? "disabled" : ""}`} onClick={visualize} disabled={isAnimating || !selectedAlgorithm.name}>
                 <FontAwesomeIcon className="fa-icon" icon={faPlayCircle}/>Visualize!
             </button>
             <button className={`btn ${isAnimating ? "disabled" : ""}`} onClick={logArray} disabled={isAnimating}>

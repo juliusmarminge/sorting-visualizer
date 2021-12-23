@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Bar from './Bar';
-import {insertionSort, selectionSort} from '../algorithms';
+import {insertionSort, quickSort, selectionSort} from '../algorithms';
 import '../styles/SortingVisualizer.css'
 
 const RANGE = 100;
@@ -9,7 +9,12 @@ const BARS_SZ = [80, 90];
 const BAR_COUNT_RANGE = [11, 83];
 const DEFAULT_BAR_COUNT = 51;
 const ANIMATION_SPEEDS = [1000, 700, 500, 250, 100, 50, 25, 10, 5, 2];
-const DEFAULT_SPEED = 2;
+const DEFAULT_SPEED = 5;
+const ALGORITHMS = {
+    "Insertion Sort": insertionSort,
+    //"Quick Sort": quickSort,
+    "Selection Sort": selectionSort,
+}
 
 let unsorted = []
 
@@ -44,21 +49,9 @@ class SortingVisualizer extends React.Component {
             this.generateArray();
     }
 
-    startInsertionSort = () => {
+    start = (sortingAlgorithm) => {
         let values = Array.from(this.state.array, (bar) => bar.value);
-        const animations = insertionSort(values)[1];
-        this.startAnimation(animations);
-    }
-
-    startQuickSort = () => {
-        /*let values = Array.from(this.state.array, (bar) => bar.value);
-        const animations = quickSort(values)[1];
-        this.startAnimation(animations);*/
-    }
-
-    startSelectionSort = () => {
-        let values = Array.from(this.state.array, (bar) => bar.value);
-        const animations = selectionSort(values)[1];
+        const animations = sortingAlgorithm(values)[1];
         this.startAnimation(animations);
     }
 
@@ -71,41 +64,33 @@ class SortingVisualizer extends React.Component {
                 if (animation.hasOwnProperty("comparison")) {
                     tmpArray[animation["comparison"][0]].isCompared = true;
                     tmpArray[animation["comparison"][1]].isCompared = true;
-                }
-                else if (animation.hasOwnProperty("resetComparison")) {
+                } else if (animation.hasOwnProperty("resetComparison")) {
                     tmpArray[animation["resetComparison"][0]].isCompared = false;
                     tmpArray[animation["resetComparison"][1]].isCompared = false;
-                }
-                else if (animation.hasOwnProperty("assign")) {
+                } else if (animation.hasOwnProperty("assign")) {
                     tmpArray[animation["assign"][0]].isSwapped = true;
                     tmpArray[animation["assign"][0]].value = animation["assign"][1];
-                }
-                else if (animation.hasOwnProperty("resetAssign")) {
+                } else if (animation.hasOwnProperty("resetAssign")) {
                     tmpArray[animation["resetAssign"]].isSwapped = false;
-                }
-                else if (animation.hasOwnProperty("swap")) {
+                } else if (animation.hasOwnProperty("swap")) {
                     tmpArray[animation["swap"][0]].isSwapped = true;
                     tmpArray[animation["swap"][1]].isSwapped = true;
                     tmpArray[animation["swap"][0]].value = animation["swap"][2];
                     tmpArray[animation["swap"][1]].value = animation["swap"][3];
-                }
-                else if (animation.hasOwnProperty("resetSwap")) {
+                } else if (animation.hasOwnProperty("resetSwap")) {
                     tmpArray[animation["resetSwap"][0]].isSwapped = false;
                     tmpArray[animation["resetSwap"][1]].isSwapped = false;
-                }
-                else if (animation.hasOwnProperty("min")) {
+                } else if (animation.hasOwnProperty("min")) {
                     tmpArray[animation["min"][0]].isMin = true;
-                }
-                else if (animation.hasOwnProperty("resetMin")) {
+                } else if (animation.hasOwnProperty("resetMin")) {
                     tmpArray[animation["resetMin"][0]].isMin = false;
-                }
-                else console.log("animation: Unreachable");
+                } else console.log("animation: Unreachable");
                 this.setState({array: tmpArray});
             }, this.state.speed * i);
-            setTimeout(() => {
-                this.setState({isAnimating: false})
-            }, this.state.speed * animations.length);
         }
+        setTimeout(() => {
+            this.setState({isAnimating: false});
+        }, this.state.speed * animations.length * 1.1);
     }
 
     generateArray = () => {
@@ -145,19 +130,14 @@ class SortingVisualizer extends React.Component {
         console.log(this.state.array)
     }
 
-    ALGORITHMS = {
-        "Insertion Sort": this.startInsertionSort,
-        "Quick Sort": this.startQuickSort,
-        "Selection Sort": this.startSelectionSort,
-    }
-
     render() {
         let array = this.state.array;
         return(
             <div className={"container"}>
                 <div className="SortingVisualizer">
                     <Navbar
-                        algorithms={this.ALGORITHMS}
+                        algorithms={ALGORITHMS}
+                        startVisualization={this.start}
                         animationSpeeds={ANIMATION_SPEEDS}
                         isAnimating={this.state.isAnimating}
                         setSpeed={(value) => this.setState({speed: value})}

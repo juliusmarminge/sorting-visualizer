@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8fe10a97-5151-44fd-8d8a-56d43c9a9b28" name="Default Changelist" comment="Test-suite for sorting algorithms implemented.">
+    <list default="true" id="8fe10a97-5151-44fd-8d8a-56d43c9a9b28" name="Default Changelist" comment="Selection Sort implemented, Navbar refactored">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Bar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/SortingVisualizer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SortingVisualizer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithms.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithms.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/Navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/algorithm.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/algorithm.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +49,7 @@
       <recent name="C:\Users\Julius\dev\javascript\sorting-visualizer\src\styles" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.test">
+  <component name="RunManager" selected="npm.start">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -176,7 +173,7 @@
       <workItem from="1640010441878" duration="5760000" />
       <workItem from="1640016479829" duration="11626000" />
       <workItem from="1640074644906" duration="5425000" />
-      <workItem from="1640204539393" duration="29336000" />
+      <workItem from="1640204539393" duration="32983000" />
     </task>
     <task id="LOCAL−00001" summary="No progress">
       <created>1640096650158</created>
@@ -196,7 +193,13 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1640252034627</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="Selection Sort implemented, Navbar refactored">
+      <created>1640262806961</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1640262806961</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +220,8 @@
     <MESSAGE value="No progress" />
     <MESSAGE value="Visualization of Insertionsort Done!" />
     <MESSAGE value="Test-suite for sorting algorithms implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Test-suite for sorting algorithms implemented." />
+    <MESSAGE value="Selection Sort implemented, Navbar refactored" />
+    <option name="LAST_COMMIT_MESSAGE" value="Selection Sort implemented, Navbar refactored" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
