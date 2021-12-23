@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8fe10a97-5151-44fd-8d8a-56d43c9a9b28" name="Default Changelist" comment="">
+    <list default="true" id="8fe10a97-5151-44fd-8d8a-56d43c9a9b28" name="Default Changelist" comment="No progress">
+      <change afterPath="$PROJECT_DIR$/src/Components/Bar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/Bar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/SortingVisualizer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SortingVisualizer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algorithms.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/SortingVisualizer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/SortingVisualizer.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -40,7 +43,7 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -81,8 +84,16 @@
       <workItem from="1640010268905" duration="132000" />
       <workItem from="1640010441878" duration="5760000" />
       <workItem from="1640016479829" duration="11626000" />
-      <workItem from="1640074644906" duration="3636000" />
+      <workItem from="1640074644906" duration="5425000" />
+      <workItem from="1640204539393" duration="12829000" />
     </task>
+    <task id="LOCAL−00001" summary="No progress">
+      <created>1640096650158</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1640096650158</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,5 +109,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="No progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="No progress" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

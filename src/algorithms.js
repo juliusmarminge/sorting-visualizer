@@ -1,20 +1,27 @@
-export function* insertionSort(array){
-    //let arr = [...array];
-
-    for (let i = 1; i < array.length; i++) {
-        let key = array[i];
+export function insertionSort(array){
+    // Returns animations for the sort, doesn't modify input-array.
+    let arr = Array.from(array, (bar) => bar.value);
+    let animations = []
+    for (let i = 1; i < arr.length; i++) {
+        let key = arr[i];
         let j;
         for (j = i-1; j > -1; j--) {
-            if (array[j] > key) {
-                array[j+1] = array[j];
+            animations.push({comparison: [j, i]});
+            if (arr[j] > key) {
+                arr[j+1] = arr[j];
+                animations.push({swap: [j+1, j, arr[j]]});
+                animations.push({resetSwap: [j+1, j]});
+
+                animations.push({resetComparison: [j, i]});
             }
             else {
+                animations.push({resetComparison: [j, i]});
                 break;
             }
-            yield* array;
         }
-        array[j+1] = key;
-        //yield i;
+        arr[j+1] = key;
+        animations.push({swap: [j+1, i, key]});
+        animations.push({resetSwap: [j+1, i]});
     }
-    return array;
+    return animations;
 }
