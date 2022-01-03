@@ -55,7 +55,7 @@ export function selectionSort(array) {
     }
     return [arr, animations];
 }
-
+/*
 export function quickSort(array) {
     let arr = [...array];
     let animations = [];
@@ -86,17 +86,17 @@ function selectPivot(array, startIdx, endIdx, animations) {
     }
     // Else end_value is the median and nothing should be done
     return array[endIdx]
-}
-
+}*/
+/*
 function  partition(array, startIdx, endIdx, animations) {
     let pivotElement = selectPivot(array, startIdx, endIdx, animations);
     /* select_pivot() will place a median value at the end of the array
-     * and return it, to minimize the risk of landing in worst case O(n^2) */
+     * and return it, to minimize the risk of landing in worst case O(n^2)
     let lowIdx = startIdx - 1;
     let highIdx = endIdx;
 
     /* Iterate all elements from left and right until they meet,
-     * for-loop with break-statements is used for efficiency over while loop. */
+     * for-loop with break-statements is used for efficiency over while loop.
     while (lowIdx < highIdx) {
         //for lowIdx in range(lowIdx + 1, highIdx + 1) {
         for (lowIdx = lowIdx + 1; lowIdx <= highIdx; lowIdx++) {
@@ -136,4 +136,4 @@ export function heapSort(array) {
     let arr = [...array];
     let animations = []
     return [arr, animations];
-}
+}*/

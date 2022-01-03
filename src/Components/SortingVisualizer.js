@@ -1,14 +1,14 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Bar from './Bar';
-import {insertionSort, quickSort, selectionSort} from '../algorithms';
+import {insertionSort, selectionSort} from '../algorithms';
 import '../styles/SortingVisualizer.css'
 
-const RANGE = 100;
-const BARS_SZ = [80, 90];
-const BAR_COUNT_RANGE = [11, 83];
+const BARS_SZ = [80, 90];           // % of screen size [W, H]
+const RANGE = 100;                  // % of BARS_SZ' height
+const BAR_COUNT_RANGE = [11, 83];   // range in the navbar-slider
 const DEFAULT_BAR_COUNT = 51;
-const ANIMATION_SPEEDS = [1000, 700, 500, 250, 100, 50, 25, 10, 5, 2];
+const ANIMATION_SPEEDS = [1000, 700, 500, 250, 100, 50, 25, 10, 5, 2];  // time in ms between each animation
 const DEFAULT_SPEED = 5;
 const ALGORITHMS = {
     "Insertion Sort": insertionSort,
