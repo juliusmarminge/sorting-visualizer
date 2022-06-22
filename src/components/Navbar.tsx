@@ -1,35 +1,30 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
-import "../styles/Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRedoAlt, faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 import { config } from "../utils/config";
 import type { Algorithm } from "../utils/algorithms";
 
-const {
-  algorithms,
-  animationSpeeds,
-  defaultSpeed,
-  defaultBarCount,
-  barCountRange,
-} = config;
+const { algorithms } = config;
 
 export const Navbar: React.FC<{
   startVisualization: (algorithm: Algorithm) => void;
   isAnimating: boolean;
-  setSpeed: (speed: number) => void;
+  speed: number;
+  setSpeed: Dispatch<SetStateAction<number>>;
   generateArray: () => void;
-  setBarCount: (amount: number) => void;
+  barCount: number;
+  setBarCount: Dispatch<SetStateAction<number>>;
 }> = ({
   startVisualization,
   isAnimating,
+  speed,
   setSpeed,
   generateArray,
+  barCount,
   setBarCount,
 }) => {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(algorithms[0]);
-  const [isDropdownActive, setIsDropdownActive] = useState(false);
-  const defaultAnimationSpeedIndex = animationSpeeds.indexOf(defaultSpeed);
 
   const selectAlgorithm = (name: string) => {
     const entry = algorithms.find((alg) => alg.displayName === name);
@@ -41,81 +36,79 @@ export const Navbar: React.FC<{
     startVisualization(algorithm);
   };
 
-  const updateSpeed = (idx: number) => {
-    const timeoutMs = animationSpeeds[idx];
-    setSpeed(timeoutMs);
-  };
-
-  const updateBarCount = (count: number) => {
-    setBarCount(count);
-  };
-
   return (
-    <nav>
-      <div
-        className={`wrapper-dropdown ${isDropdownActive ? "active" : ""}`}
-        onClick={() => setIsDropdownActive(!isDropdownActive)}
-      >
-        <p>{selectedAlgorithm.displayName || "Select Algorithm"}</p>
-        <ul className="dropdown">
-          {algorithms.map((algorithm, idx) => {
-            return (
-              <li
-                key={idx}
-                onClick={() => selectAlgorithm(algorithm.displayName)}
-              >
-                <p>{algorithm.displayName}</p>
-              </li>
-            );
-          })}
-        </ul>
+    <div className="navbar bg-base-300">
+      <div className="w-4/5 mx-auto flex gap-16 justify-evenly">
+        {/** ALGORITHM SELECTOR */}
+        <div className="dropdown">
+          <label tabIndex={0} className="btn m-1 w-max btn-primary">
+            {selectedAlgorithm.displayName || "Select Algorithm"}
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-52"
+          >
+            {algorithms.map((algorithm, idx) => {
+              return (
+                <li
+                  key={idx}
+                  onClick={() => selectAlgorithm(algorithm.displayName)}
+                >
+                  <a>{algorithm.displayName}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        {/** SPEED SLIDER */}
+        <div className="form-control flex-1">
+          <label className="label" htmlFor="animation-speed-slider">
+            <span className="label-text">Animation Speed</span>
+          </label>
+          <input
+            name="animation-speed-slider"
+            className="range range-xs range-primary direction-rtl"
+            type="range"
+            min={1}
+            max={100}
+            value={speed}
+            onChange={(e) => setSpeed(e.target.valueAsNumber)}
+          />
+        </div>
+        {/** BAR COUNT SLIDER */}
+        <div className="form-control flex-1">
+          <label className="label" htmlFor="bar-count-slider">
+            <span className="label-text">Bar Count</span>
+          </label>
+          <input
+            name="bar-count-slider"
+            className="range range-xs range-primary"
+            type="range"
+            min={9}
+            max={85}
+            value={barCount}
+            onChange={(e) => setBarCount(e.target.valueAsNumber)}
+          />
+        </div>
+        <div className="flex gap-2">
+          <button
+            className="btn btn-primary gap-1"
+            onClick={generateArray}
+            disabled={isAnimating}
+          >
+            <FontAwesomeIcon className="fa-icon" icon={faRedoAlt} />
+            New Bars
+          </button>
+          <button
+            className="btn btn-primary gap-1"
+            onClick={visualize}
+            disabled={isAnimating}
+          >
+            <FontAwesomeIcon className="fa-icon" icon={faPlayCircle} />
+            Visualize!
+          </button>
+        </div>
       </div>
-      <div className="wrapper-slider">
-        <label htmlFor="speedSlider" className="slider-label">
-          Animation Speed
-        </label>
-        <input
-          name="speedSlider"
-          className="slider slider-speed"
-          type="range"
-          step={1}
-          min={0}
-          max={animationSpeeds.length - 1}
-          defaultValue={defaultAnimationSpeedIndex}
-          onChange={(e) => updateSpeed(parseFloat(e.target.value))}
-        />
-      </div>
-      <div className="wrapper-slider">
-        <label htmlFor="barSlider" className="slider-label">
-          Bar Count
-        </label>
-        <input
-          name="barSlider"
-          className="slider slider-bars"
-          type="range"
-          step={2}
-          min={barCountRange[0]}
-          max={barCountRange[1]}
-          defaultValue={defaultBarCount}
-          onChange={(e) => setBarCount(e.target.valueAsNumber)}
-        />
-      </div>
-      <button
-        className={`btn ${isAnimating ? "disabled" : ""}`}
-        onClick={generateArray}
-        disabled={isAnimating}
-      >
-        <FontAwesomeIcon className="fa-icon" icon={faRedoAlt} />
-        New Bars
-      </button>
-      <button
-        className={`btn ${isAnimating ? "disabled" : ""}`}
-        onClick={visualize}
-        disabled={isAnimating}
-      >
-        <FontAwesomeIcon className="fa-icon" icon={faPlayCircle} />
-        Visualize!
-      </button>
-    </nav>
+    </div>
   );
 };

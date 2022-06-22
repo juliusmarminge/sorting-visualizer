@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/Bar.css";
 
 export type BarType = {
   value: number;
@@ -11,15 +10,15 @@ export type BarType = {
 export const Bar: React.FC<{ bar: BarType }> = ({ bar }) => {
   const { value, isCompared, isSwapped, isMin } = bar;
   const color = isCompared
-    ? "hsl(300, 70%, 65%)"
+    ? "bg-pink-500"
     : isSwapped
-    ? "hsl(100, 70%, 65%)"
+    ? "bg-green-500"
     : isMin
-    ? "hsl(60, 100%, 50%)"
-    : "hsl(219, 70%, 65%)";
+    ? "bg-yellow-500"
+    : "bg-blue-500";
   return (
     <div
-      className="bar"
+      className={`${color} w-5 rounded-b-md`}
       style={{ height: `${value}%`, backgroundColor: color }}
     />
   );
