@@ -1,19 +1,15 @@
 import React from "react";
 import "../styles/Bar.css";
 
-export type IBar = {
+export type BarType = {
   value: number;
   isCompared: boolean;
   isSwapped: boolean;
   isMin: boolean;
 };
 
-export const Bar: React.FC<IBar> = ({
-  value,
-  isCompared,
-  isSwapped,
-  isMin,
-}) => {
+export const Bar: React.FC<{ bar: BarType }> = ({ bar }) => {
+  const { value, isCompared, isSwapped, isMin } = bar;
   const color = isCompared
     ? "hsl(300, 70%, 65%)"
     : isSwapped
