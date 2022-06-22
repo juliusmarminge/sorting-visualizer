@@ -100,7 +100,7 @@ export const Navbar: React.FC<{
         {/** SPEED SLIDER */}
         <div className="form-control flex-1">
           <label className="label" htmlFor="animation-speed-slider">
-            <span className="label-text">Animation Speed</span>
+            <span className="label-text">Animation Delay</span>
           </label>
           <input
             name="animation-speed-slider"
