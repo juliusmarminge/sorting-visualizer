@@ -14,6 +14,7 @@ A visualizer tool inspired by [Clement Mihailescu's project](https://github.com/
 
 ## Demo
 The app is live at [sv.jumr.dev](https://sv.jumr.dev)
+
 <a href="https://sv.jumr.dev">
    <img src="https://user-images.githubusercontent.com/51714798/175004224-87370b3c-5bf0-4c6e-828e-490bff464adb.gif" />
 </a>
